@@ -10,16 +10,12 @@ function App() {
 
   useEffect( () => {
     (async () => {
-      await getMoreData();
+      setData(await fetch(apiEndpoint, index, getNumRows));
     })();
   }, [index])
 
   const apiEndpoint = "https://us-central1-infinitus-interviews.cloudfunctions.net/react-pagination/entries";
   const getNumRows = 20;
-
-  async function getMoreData() {
-    setData(await fetch(apiEndpoint, index, getNumRows));
-  }
 
   async function getPrevData() {
     if (index >= getNumRows) {
